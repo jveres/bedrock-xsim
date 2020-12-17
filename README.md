@@ -1,6 +1,8 @@
 # bedrock-xsim
 Custom [Bedrock](https://github.com/Expensify/Bedrock) DB image optimized for size
 
+![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/jveres/bedrock-xsim)
+
 ## Build Docker image
 ```sh
 docker build -t bedrock
