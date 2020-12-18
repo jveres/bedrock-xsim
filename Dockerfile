@@ -1,3 +1,6 @@
+ARG DOCKER_BUILD
+ENV DOCKER_BUILD $DOCKER_BUILD
+
 FROM ubuntu:18.04 as build
 
 # Install some dependencies
