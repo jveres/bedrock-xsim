@@ -9,15 +9,15 @@ RUN git clone https://github.com/Expensify/Bedrock.git /src
 
 # Build it
 WORKDIR /src
-# Enable FTS5 and GEOPOLY plugins
-RUN sed -i. 's/-DSQLITE_ENABLE_SESSION/-DSQLITE_ENABLE_SESSION -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_GEOPOLY/' Makefile
+# Enable plugins
+RUN sed -i. 's/-DSQLITE_ENABLE_SESSION/-DSQLITE_ENABLE_SESSION -DSQLITE_ENABLE_FTS5/' Makefile
 RUN make
 
 # Run tests
 WORKDIR /src/test
 RUN ./test -threads 8
-#WORKDIR /src/test/clustertest
-#RUN ./clustertest -threads 8
+WORKDIR /src/test/clustertest
+RUN if [ "$DOCKER_REPO" ]; then echo "Skipping cluster tests on Docker Hub"; else ./clustertest -threads 8; fi
 
 # Prepare artifacts
 COPY start.sh /usr/local/bin/
@@ -35,6 +35,8 @@ RUN cat /rootfs.list | xargs strip
 
 RUN chmod +x /usr/local/bin/start.sh
 RUN echo "/usr/local/bin/start.sh" >> /rootfs.list
+RUN echo 'hosts: files dns' > /etc/nsswitch.conf
+RUN echo /etc/nsswitch.conf >> /rootfs.list
 
 RUN cat /rootfs.list | tar -T- -cphf- | tar -C /rootfs -xpf-
 
