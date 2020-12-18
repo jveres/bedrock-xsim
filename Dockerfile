@@ -17,6 +17,7 @@ RUN make
 WORKDIR /src/test
 RUN ./test -threads 8
 WORKDIR /src/test/clustertest
+RUN env
 RUN if [ "$DOCKER_REPO" ]; then echo "Skipping cluster tests on Docker Hub"; else ./clustertest -threads 8; fi
 
 # Prepare artifacts
