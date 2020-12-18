@@ -20,7 +20,7 @@ RUN make
 WORKDIR /src/test
 RUN ./test -threads 8
 WORKDIR /src/test/clustertest
-RUN if [ "$DOCKER_BUILD" ]; then echo "Skipping cluster tests on Docker Hub"; else ./clustertest -threads 8; fi
+RUN if [ "$DOCKER_BUILD" = "1" ]; then echo "Skipping cluster tests on Docker Hub"; else ./clustertest -threads 8; fi
 
 # Prepare artifacts
 COPY start.sh /usr/local/bin/
