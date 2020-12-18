@@ -16,8 +16,8 @@ RUN make
 # Run tests
 WORKDIR /src/test
 RUN ./test -threads 8
-WORKDIR /src/test/clustertest
-RUN ./clustertest -threads 8
+#WORKDIR /src/test/clustertest
+#RUN ./clustertest -threads 8
 
 # Prepare artifacts
 COPY start.sh /usr/local/bin/
