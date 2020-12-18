@@ -1,7 +1,8 @@
+FROM ubuntu:18.04 as build
+
+# Setup build-only environment vars
 ARG DOCKER_BUILD
 ENV DOCKER_BUILD $DOCKER_BUILD
-
-FROM ubuntu:18.04 as build
 
 # Install some dependencies
 RUN apt-get update && apt-get -y install software-properties-common && add-apt-repository ppa:ubuntu-toolchain-r/test && apt-get update
