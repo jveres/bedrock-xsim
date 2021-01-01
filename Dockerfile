@@ -11,7 +11,7 @@ RUN apt-get install -y git build-essential gcc-9 g++-9 libpcre++-dev zlib1g-dev 
 
 # Get Sqlite src
 RUN wget https://www.sqlite.org/src/tarball/1d984722/SQLite-${SQLITE_ID}.tar.gz
-RUN tar xzf SQLite-1d984722.tar.gz
+RUN tar xzf SQLite-${SQLITE_ID}.tar.gz
 
 # Clone Bedrock src
 RUN git clone https://github.com/Expensify/Bedrock.git /src
