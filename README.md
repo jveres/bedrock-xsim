@@ -1,7 +1,17 @@
 # bedrock-xsim
-Custom [Bedrock](https://github.com/Expensify/Bedrock) DB image optimized for size
+Custom [Bedrock](https://github.com/Expensify/Bedrock) Docker image optimized for size
 
 ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/jveres/bedrock-xsim)
+
+This build includes IPv6 support and statically linked with the following Sqlite extensions:
+- Series
+- Percentile
+- Regexp
+- Uuid
+- FTS5
+- RTree
+- Geopoly
+- DBStat
 
 ## Build Docker image
 ```sh
